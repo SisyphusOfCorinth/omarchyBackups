@@ -1,0 +1,4 @@
+runlocaldb() {
+    local port=$(docker ps --format '{{.Ports}}' | grep 1433 | grep -oP '\d+(?=->1433)')
+    lazysql "sqlserver://sa:LocalPassword123%21@localhost:${port}?database=sqldata&TrustServerCertificate=true"
+}
